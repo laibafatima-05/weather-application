@@ -572,3 +572,30 @@ footer {
     color: #e01d1d;
     font-size: 14px;
 }
+
+.error-message.success-message {
+    color: #198754;
+}
+
+/* Sidebar close button */
+.sidebar {
+    position: relative;
+}
+
+.sidebar-close-btn {
+    position: absolute;
+    top: 22px;
+    right: 20px;
+    border: none;
+    background: transparent;
+    color: var(--navy);
+    font-size: 25px;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 5;
+}
+
+/* Hide hamburger when sidebar is open */
+#weatherSidebar.show ~ .main-content .menu-btn {
+    display: none !important;
+}

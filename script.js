@@ -54,7 +54,7 @@ function formatDate(date) {
 
 async function getWeather() {
     errorMessage.textContent = "";
-
+    errorMessage.classList.remove("success-message");
     refreshBtn.classList.add("refreshing");
 
     try {
@@ -73,13 +73,15 @@ async function getWeather() {
         showCurrentWeather(data);
         showHourlyForecast(data);
         showWeeklyForecast(data);
-
+        errorMessage.classList.add("success-message");
         errorMessage.textContent = "Weather updated successfully!";
         setTimeout(function() {
     errorMessage.textContent = "";
+    errorMessage.classList.remove("success-message");
 }, 2000);
 
     } catch (error) {
+        errorMessage.classList.remove("success-message");
         errorMessage.textContent = "Unable to refresh weather. Please try again.";
         console.log(error);
 
