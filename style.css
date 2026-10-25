@@ -1,6 +1,4 @@
-
-* {
-    margin: 0;
+* {margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
@@ -534,6 +532,30 @@ footer {
     animation: rotate 0.8s linear infinite;
 }
 
+.menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 10px;
+    background: #eaf3ff;
+    color: #183b63;
+    font-size: 25px;
+    cursor: pointer;
+    transition: background .3s, color .3s;
+}
+
+.menu-btn:hover {
+    background: #dceeff;
+    color: #398ee8;
+}
+
+.menu-btn i {
+    font-size: 25px;
+}
+
 @keyframes rotate {
     from {
         transform: rotate(0deg);
@@ -547,6 +569,6 @@ footer {
 .error-message {
     min-height: 18px;
     margin-bottom: 8px;
-    color: #28a780;
+    color: #e01d1d;
     font-size: 14px;
 }

@@ -1,4 +1,3 @@
-
 const cityInput = document.getElementById("cityInput");
 const searchForm = document.getElementById("searchForm");
 const refreshBtn = document.getElementById("refreshBtn");

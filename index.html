@@ -1,177 +1,306 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WeatherX - Weather Dashboard</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="app-layout">
+        <title>WeatherX - Weather Dashboard</title>
 
-    <aside class="sidebar">
-        <a href="#" class="brand">
-            <i class="bi bi-cloud-sun-fill"></i>
-            Weather<span>X</span>
-        </a>
+        <!-- Bootstrap CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet">
 
-        <nav class="side-nav">
-            <a href="#" class="active"><i class="bi bi-house-door"></i> Home</a>
-            <a href="#searchForm"><i class="bi bi-search"></i> Search</a>
-            <a href="#weeklyForecast"><i class="bi bi-calendar-week"></i> Forecast</a>
-            <a href="#weatherDetails"><i class="bi bi-gear"></i> Details</a>
-        </nav>
+        <!-- Bootstrap Icons -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+            rel="stylesheet">
 
-        <div class="sidebar-bottom">
-            <i class="bi bi-cloud-sun"></i>
-            <h5>Better Weather</h5>
-            <p>Brighter Days</p>
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <div class="container-fluid p-0">
+
+            <div class="row g-0">
+
+                <!-- Sidebar -->
+                <aside class="sidebar collapse d-lg-flex flex-column col-12 col-lg-2"
+                    id="weatherSidebar">
+
+                    <div class="offcanvas-header">
+                        <a href="#" class="brand" id="weatherSidebarLabel">
+                            <i class="bi bi-cloud-sun-fill"></i>
+                            Weather<span>X</span>
+                        </a>
+                    </div>
+
+                    <div class="offcanvas-body">
+                        <nav class="side-nav">
+
+                            <a href="#home" class="active">
+                                <i class="bi bi-house-door"></i> Home
+                            </a>
+
+                            <a href="#searchForm">
+                                <i class="bi bi-search"></i> Search
+                            </a>
+
+                            <a href="#weeklyForecast">
+                                <i class="bi bi-calendar-week"></i> Forecast
+                            </a>
+
+                            <a href="#weatherDetails">
+                                <i class="bi bi-gear"></i> Details
+                            </a>
+
+                        </nav>
+
+                        <div class="sidebar-bottom">
+                            <i class="bi bi-cloud-sun"></i>
+                            <h5>Better Weather</h5>
+                            <p>Brighter Days</p>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="col-12 col-lg-10 main-content" id="home">
+
+                    <!-- Topbar -->
+                    <header class="topbar">
+
+                        <button class="menu-btn d-lg-none" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#weatherSidebar"
+                            aria-controls="weatherSidebar"
+                            aria-expanded="false">
+                            <i class="bi bi-list"></i>
+                        </button>
+
+                        <form id="searchForm" class="search-box">
+
+                            <i class="bi bi-search"></i>
+
+                            <input
+                                type="text"
+                                id="cityInput"
+                                placeholder="Search for a city..."
+                                required>
+
+                            <button type="submit">Search</button>
+
+                        </form>
+
+                        <div class="location">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <span id="countryName">Faisalabad,
+                                Pakistan</span>
+                        </div>
+
+                        <button
+                            id="refreshBtn"
+                            class="refresh-btn"
+                            type="button"
+                            title="Refresh weather">
+                            <i class="bi bi-arrow-clockwise"></i>
+                        </button>
+
+                    </header>
+
+                    <p id="errorMessage" class="error-message"
+                        role="status"></p>
+
+                    <!-- Dashboard -->
+                    <section class="row g-4">
+
+                        <!-- Left Column -->
+                        <div class="col-12 col-xl-7 left-content">
+
+                            <!-- Current Weather -->
+                            <section class="weather-hero">
+
+                                <div class="hero-info">
+
+                                    <div class="city-info">
+
+                                        <h2>
+                                            <i
+                                                class="bi bi-geo-alt-fill"></i>
+                                            <span
+                                                id="cityName">Faisalabad</span>
+                                        </h2>
+
+                                        <p id="currentDate">Loading
+                                            date...</p>
+
+                                    </div>
+
+                                    <div class="temperature-info">
+
+                                        <h1>
+                                            <span
+                                                id="temperature">--</span><sup>°C</sup>
+                                        </h1>
+
+                                        <h3 id="condition">Loading...</h3>
+
+                                        <p>
+                                            <i
+                                                class="bi bi-thermometer-half"></i>
+                                            Feels like
+                                            <strong
+                                                id="feelsLike">--°C</strong>
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="hero-icon">
+                                    <i id="mainIcon"
+                                        class="bi bi-cloud-sun-fill"></i>
+                                </div>
+
+                                <div class="hero-bottom">
+
+                                    <div>
+                                        <i class="bi bi-droplet"></i>
+                                        <span>Humidity</span>
+                                        <strong id="humidity">--%</strong>
+                                    </div>
+
+                                    <div>
+                                        <i class="bi bi-wind"></i>
+                                        <span>Wind</span>
+                                        <strong id="windSpeed">--
+                                            km/h</strong>
+                                    </div>
+
+                                    <div>
+                                        <i class="bi bi-eye"></i>
+                                        <span>Visibility</span>
+                                        <strong id="visibility">--
+                                            km</strong>
+                                    </div>
+
+                                    <div>
+                                        <i class="bi bi-speedometer2"></i>
+                                        <span>Pressure</span>
+                                        <strong id="pressure">--
+                                            hPa</strong>
+                                    </div>
+
+                                </div>
+
+                            </section>
+
+                            <!-- Hourly Forecast -->
+                            <section class="forecast-card hourly-card">
+
+                                <div class="section-heading">
+                                    <h3>Hourly Forecast</h3>
+                                    <span>Next 8 Hours</span>
+                                </div>
+
+                                <div id="hourlyForecast"
+                                    class="hourly-list">
+                                    <p>Loading forecast...</p>
+                                </div>
+
+                            </section>
+
+                            <!-- Weather Details -->
+                            <section id="weatherDetails"
+                                class="details-grid">
+
+                                <div class="detail-card wind-card">
+                                    <i class="bi bi-wind"></i>
+                                    <p>Wind Speed</p>
+                                    <h3 id="windDetail">-- km/h</h3>
+                                    <span>Current wind</span>
+                                </div>
+
+                                <div class="detail-card humidity-card">
+                                    <i class="bi bi-droplet-half"></i>
+                                    <p>Humidity</p>
+                                    <h3 id="humidityDetail">--%</h3>
+                                    <span>Air moisture</span>
+                                </div>
+
+                                <div class="detail-card visibility-card">
+                                    <i class="bi bi-eye"></i>
+                                    <p>Visibility</p>
+                                    <h3 id="visibilityDetail">-- km</h3>
+                                    <span>Viewing distance</span>
+                                </div>
+
+                                <div class="detail-card pressure-card">
+                                    <i class="bi bi-speedometer2"></i>
+                                    <p>Pressure</p>
+                                    <h3 id="pressureDetail">-- hPa</h3>
+                                    <span>Air pressure</span>
+                                </div>
+
+                            </section>
+
+                        </div>
+
+                        <!-- Right Column -->
+                        <aside class="col-12 col-xl-5 right-content">
+
+                            <!-- Weekly Forecast -->
+                            <section id="weeklyForecast"
+                                class="forecast-card weekly-card">
+
+                                <div class="section-heading">
+                                    <h3>7-Day Forecast</h3>
+                                    <span>Weekly</span>
+                                </div>
+
+                                <div id="weeklyList">
+                                    <p>Loading forecast...</p>
+                                </div>
+
+                            </section>
+
+                            <!-- Mood Card -->
+                            <section class="mood-card">
+
+                                <div class="mood-overlay">
+
+                                    <span>WEATHERX</span>
+
+                                    <h2>
+                                        Good Weather,<br>
+                                        Great Mood.
+                                    </h2>
+
+                                    <p>Make every day a beautiful day.</p>
+
+                                </div>
+
+                            </section>
+
+                        </aside>
+
+                    </section>
+
+                    <!-- Footer -->
+                    <footer>
+                        <p>© 2026 WeatherX. Made for better days.</p>
+                    </footer>
+
+                </main>
+
+            </div>
+
         </div>
-    </aside>
-
-    <main class="main-content">
-
-        <header class="topbar">
-            <form id="searchForm" class="search-box">
-                <i class="bi bi-search"></i>
-                <input type="text" id="cityInput" placeholder="Search for a city..." required>
-                <button type="submit">Search</button>
-            </form>
-
-            <div class="location">
-                <i class="bi bi-geo-alt-fill"></i>
-                <span id="countryName">Faisalabad, Pakistan</span>
-            </div>
-
-            <button id="refreshBtn" class="refresh-btn" type="button" title="Refresh weather">
-                <i class="bi bi-arrow-clockwise"></i>
-            </button>
-        </header>
-
-        <p id="errorMessage" class="error-message" role="status"></p>
-
-        <section class="dashboard-grid">
-
-            <div class="left-content">
-
-                <section class="weather-hero">
-                    <div class="hero-info">
-                        <div class="city-info">
-                            <h2><i class="bi bi-geo-alt-fill"></i> <span id="cityName">Faisalabad</span></h2>
-                            <p id="currentDate">Loading date...</p>
-                        </div>
-
-                        <div class="temperature-info">
-                            <h1><span id="temperature">--</span><sup>°C</sup></h1>
-                            <h3 id="condition">Loading...</h3>
-                            <p><i class="bi bi-thermometer-half"></i> Feels like <strong id="feelsLike">--°C</strong></p>
-                        </div>
-                    </div>
-
-                    <div class="hero-icon">
-                        <i id="mainIcon" class="bi bi-cloud-sun-fill"></i>
-                    </div>
-
-                    <div class="hero-bottom">
-                        <div>
-                            <i class="bi bi-droplet"></i>
-                            <span>Humidity</span>
-                            <strong id="humidity">--%</strong>
-                        </div>
-                        <div>
-                            <i class="bi bi-wind"></i>
-                            <span>Wind</span>
-                            <strong id="windSpeed">-- km/h</strong>
-                        </div>
-                        <div>
-                            <i class="bi bi-eye"></i>
-                            <span>Visibility</span>
-                            <strong id="visibility">-- km</strong>
-                        </div>
-                        <div>
-                            <i class="bi bi-speedometer2"></i>
-                            <span>Pressure</span>
-                            <strong id="pressure">-- hPa</strong>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="forecast-card hourly-card">
-                    <div class="section-heading">
-                        <h3>Hourly Forecast</h3>
-                        <span>Next 8 Hours</span>
-                    </div>
-                    <div id="hourlyForecast" class="hourly-list">
-                        <p>Loading forecast...</p>
-                    </div>
-                </section>
-
-                <section id="weatherDetails" class="details-grid">
-                    <div class="detail-card wind-card">
-                        <i class="bi bi-wind"></i>
-                        <p>Wind Speed</p>
-                        <h3 id="windDetail">-- km/h</h3>
-                        <span>Current wind</span>
-                    </div>
-
-                    <div class="detail-card humidity-card">
-                        <i class="bi bi-droplet-half"></i>
-                        <p>Humidity</p>
-                        <h3 id="humidityDetail">--%</h3>
-                        <span>Air moisture</span>
-                    </div>
-
-                    <div class="detail-card visibility-card">
-                        <i class="bi bi-eye"></i>
-                        <p>Visibility</p>
-                        <h3 id="visibilityDetail">-- km</h3>
-                        <span>Viewing distance</span>
-                    </div>
-
-                    <div class="detail-card pressure-card">
-                        <i class="bi bi-speedometer2"></i>
-                        <p>Pressure</p>
-                        <h3 id="pressureDetail">-- hPa</h3>
-                        <span>Air pressure</span>
-                    </div>
-                </section>
-
-            </div>
-
-            <aside class="right-content">
-                <section id="weeklyForecast" class="forecast-card weekly-card">
-                    <div class="section-heading">
-                        <h3>7-Day Forecast</h3>
-                        <span>Weekly</span>
-                    </div>
-                    <div id="weeklyList">
-                        <p>Loading forecast...</p>
-                    </div>
-                </section>
-
-                <section class="mood-card">
-                    <div class="mood-overlay">
-                        <span>WEATHERX</span>
-                        <h2>Good Weather,<br>Great Mood.</h2>
-                        <p>Make every day a beautiful day.</p>
-                    </div>
-                </section>
-            </aside>
-
-        </section>
-
-        <footer>
-            <p>© 2026 WeatherX. Made for better days.</p>
-        </footer>
-
-    </main>
-</div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="script.js"></script>
-</body>
+    </body>
 </html>
