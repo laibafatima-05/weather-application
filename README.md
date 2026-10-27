@@ -1,12 +1,12 @@
-## WeatherX - Weather Dashboard
+## WeatherX - Weather Dashboard🌥️
 
 WeatherX is a responsive weather dashboard that provides real-time weather information and forecasts for different cities. Users can search for a city, view current weather conditions, check hourly and weekly forecasts, and refresh weather data.
 
-## Live Demo
+## 🔗Live Demo
 
 https://weather-application-cyan-zeta.vercel.app/
 
-## Screenshots
+## 📸Screenshots
 
 <table>
    <tr>
@@ -23,7 +23,7 @@ https://weather-application-cyan-zeta.vercel.app/
    </tr>
 </table>
 
-## Features
+## ✨Features
 
 * Search weather by city name.
 * Display current temperature and weather conditions.
@@ -37,13 +37,13 @@ https://weather-application-cyan-zeta.vercel.app/
 * Responsive layout for mobile, tablet, and desktop screens.
 * Mobile-friendly collapsible sidebar navigation.
 
-## Technologies Used
+## 🛠️Technologies Used
 
 * HTML
 * CSS
 * JavaScript
 * Bootstrap
 
-## Author
+## 👩🏻‍💻Author
 
 Laiba Fatima
